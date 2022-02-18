@@ -21,6 +21,7 @@ var decryptCmd = &cobra.Command{
 	Short: "Decrypts the provided file using LFSR",
 	Run: func(cmd *cobra.Command, args []string) {
 		l := lfsr.NewLFSR(
+			vars.BitLength,
 			vars.Seed,
 			parseTaps(vars.Taps),
 		)

@@ -17,8 +17,9 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
+	rootCmd.PersistentFlags().Uint32VarP(&vars.BitLength, "bits", "n", 32, "number of bits in the LFSR")
 	rootCmd.PersistentFlags().Uint32VarP(&vars.Seed, "seed", "s", 32109412, "seed integer")
-	rootCmd.PersistentFlags().StringVarP(&vars.Taps, "taps", "t", "2", "comma separated tap positions")
+	rootCmd.PersistentFlags().StringVarP(&vars.Taps, "taps", "t", "1", "comma separated tap positions (starts with 0)")
 }
 
 func Execute() {

@@ -23,6 +23,7 @@ var encryptCmd = &cobra.Command{
 	Short: "Encrypts the provided file using LFSR",
 	Run: func(cmd *cobra.Command, args []string) {
 		l := lfsr.NewLFSR(
+			vars.BitLength,
 			vars.Seed,
 			parseTaps(vars.Taps),
 		)

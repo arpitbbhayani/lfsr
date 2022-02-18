@@ -1,12 +1,17 @@
 package lfsr
 
 type LFSR struct {
+	n    uint32
 	seed uint32
 	taps []uint32
 }
 
-func NewLFSR(seed uint32, taps []uint32) *LFSR {
+func NewLFSR(n uint32, seed uint32, taps []uint32) *LFSR {
+	if n > 32 {
+		panic("max bits in this LFSR can be 32")
+	}
 	return &LFSR{
+		n:    n,
 		seed: seed,
 		taps: taps,
 	}
@@ -19,7 +24,8 @@ func (l *LFSR) NextBit() uint32 {
 		seed = seed ^ (l.seed >> tap)
 	}
 	msb := seed & 1
-	l.seed = (l.seed >> 1) | (msb << 30)
+	l.seed = (l.seed >> 1) | (msb << (l.n - 1))
+
 	return outputBit
 }
 
