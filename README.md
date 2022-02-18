@@ -1,6 +1,16 @@
 LFSR - Linear Feedback Shift Register
 ===
 
+A linear feedback shift register is a collection of bits that shifts when triggered, and the next state is a linear function of its previous state. We use [right-shift](https://en.wikipedia.org/wiki/Logical_shift) (`>>`) as the shift operation and [XOR](https://en.wikipedia.org/wiki/Exclusive_or) (`^`) as the linear function to generate the next state of the register.
+
+This repository contains a demonstration of LFSR in
+
+ - generating random bits
+ - generating random numbers
+ - scrambling and unscrambling a stream of bytes
+
+You can read more about LFSRs on [Pseudorandom Number Generation using LFSR](https://arpitbhayani.me/blogs/lfsr).
+
 # Sample Usage
 
 ## Generating Random Bits
