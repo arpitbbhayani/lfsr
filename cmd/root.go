@@ -20,6 +20,7 @@ func init() {
 	rootCmd.PersistentFlags().Uint32VarP(&vars.BitLength, "bits", "n", 32, "number of bits in the LFSR")
 	rootCmd.PersistentFlags().Uint32VarP(&vars.Seed, "seed", "s", 32109412, "seed integer")
 	rootCmd.PersistentFlags().StringVarP(&vars.Taps, "taps", "t", "1", "comma separated tap positions (starts with 0)")
+	rootCmd.PersistentFlags().IntVar(&vars.RandomCount, "count", 10, "number of random bits/numbers to be generated")
 }
 
 func Execute() {

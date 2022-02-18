@@ -20,8 +20,8 @@ var randomCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		taps := parseTaps(vars.Taps)
 		l := lfsr.NewLFSR(vars.BitLength, vars.Seed, taps)
-		for {
-			fmt.Print(l.NextBit())
+		for i := 0; i < vars.RandomCount; i++ {
+			fmt.Println("lfsr:", l.Value(), "\t", "output:", l.NextBit())
 		}
 	},
 }

@@ -1,5 +1,10 @@
 package lfsr
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type LFSR struct {
 	n    uint32
 	seed uint32
@@ -25,7 +30,6 @@ func (l *LFSR) NextBit() uint32 {
 	}
 	msb := seed & 1
 	l.seed = (l.seed >> 1) | (msb << (l.n - 1))
-
 	return outputBit
 }
 
@@ -39,4 +43,9 @@ func (l *LFSR) NextNumber(k int) uint32 {
 		n |= l.NextBit()
 	}
 	return n
+}
+
+func (l *LFSR) Value() string {
+	formatSpecifier := fmt.Sprintf("%%0%ds", l.n)
+	return fmt.Sprintf(formatSpecifier, strconv.FormatInt(int64(l.seed), 2))
 }
