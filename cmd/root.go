@@ -12,7 +12,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "lfsr",
-	Short: "LFSR based encryption and decryption",
+	Short: "LFSR - Linear Feedback Shift Register",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
