@@ -8,20 +8,33 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var kBit int
-
 func init() {
-	rootCmd.AddCommand(randomCmd)
+	rootCmd.AddCommand(randomBitsCmd)
+
+	randomNumbersCmd.PersistentFlags().IntVarP(&vars.KBit, "k", "k", 8, "width of the random number (in bits)")
+	rootCmd.AddCommand(randomNumbersCmd)
 }
 
-var randomCmd = &cobra.Command{
-	Use:   "random",
+var randomBitsCmd = &cobra.Command{
+	Use:   "random-bits",
 	Short: "Generates random bits using LFSR",
 	Run: func(cmd *cobra.Command, args []string) {
 		taps := parseTaps(vars.Taps)
 		l := lfsr.NewLFSR(vars.BitLength, vars.Seed, taps)
 		for i := 0; i < vars.RandomCount; i++ {
-			fmt.Println("lfsr:", l.Value(), "\t", "output:", l.NextBit())
+			fmt.Println(l.NextBit())
+		}
+	},
+}
+
+var randomNumbersCmd = &cobra.Command{
+	Use:   "random-numbers",
+	Short: "Generates random numbers using LFSR",
+	Run: func(cmd *cobra.Command, args []string) {
+		taps := parseTaps(vars.Taps)
+		l := lfsr.NewLFSR(vars.BitLength, vars.Seed, taps)
+		for i := 0; i < vars.RandomCount; i++ {
+			fmt.Println(l.NextNumber(vars.KBit))
 		}
 	},
 }
